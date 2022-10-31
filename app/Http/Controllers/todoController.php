@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\todoRequest;
+use App\Mail\todoEmail;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Mail;
 
 class todoController extends Controller
 {
     public function indexPage() {
         $todos = Todo::orderBy('id')->get();
+        Mail::to("shayanwqhw@gmail.com")->send(new todoEmail("shayan", 2022));
 
         return view('index', [
             "pageTitle" => "Todo List",
